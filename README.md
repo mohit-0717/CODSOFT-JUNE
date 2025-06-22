@@ -1,69 +1,34 @@
 # CODSOFT-JUNE
+# 💻 CODSOFT Python Internship – Project Tasks
 
-# ✅ To-Do List (CLI Version) – CODSOFT Task 1
+This repository contains 3 tasks completed as part of the **CODSOFT Python Programming Internship**.
 
-This is a command-line To-Do List application built using Python. It allows users to:
+---
 
-- Add tasks
-- View all tasks with status
-- Mark tasks as completed
+## ✅ Task 1: To-Do List (Command-Line)
+
+A command-line based task manager that allows users to add, view, complete, and delete tasks. Tasks are stored in a JSON file to maintain persistence across sessions.
+
+**Key Features:**
+- Add new tasks
+- View all tasks with status (pending/completed)
+- Mark tasks as complete
 - Delete tasks
-- Save tasks persistently using a JSON file
-
-## 🛠️ Technologies Used
-- Python 3
-- JSON for file-based storage
-
-## 🚀 How to Run
-
-```bash
-python todo.py
 
 ---
 
-### 🔹 **Task 2: Calculator**
+## 🧮 Task 2: Calculator (Command-Line)
 
-```markdown
-# 🧮 Simple Calculator – CODSOFT Task 2
+A basic calculator that supports simple arithmetic operations through a CLI interface. The user can perform addition, subtraction, multiplication, and division with proper error handling.
 
-A basic calculator that performs:
-
-- Addition
-- Subtraction
-- Multiplication
-- Division
-
-All through a command-line interface.
-
-## 🛠️ Technologies Used
-- Python 3
-
-## 🚀 How to Run
-
-```bash
-python calculator.py
+**Key Features:**
+- Handles four main operations
+- Input validation
+- User-friendly menu with loop until exit
 
 ---
 
-### 🔹 **Task 3: Contact Book**
+## 📒 Task 3: Contact Book (Command-Line)
 
-```markdown
-# 📒 Contact Book – CODSOFT Task 3
+A contact management system that allows the user to manage and search for contact details such as name, phone number, email, and address. Data
 
-This is a CLI-based Contact Book application that allows users to:
-
-- Add new contacts (name, phone, email, address)
-- View all saved contacts
-- Search for a contact by name or phone
-- Update contact details
-- Delete contacts
-- Save all data to a JSON file
-
-## 🛠️ Technologies Used
-- Python 3
-- JSON for data storage
-
-## 🚀 How to Run
-
-```bash
-python contact_book.py
