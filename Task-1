@@ -1,0 +1,101 @@
+import json
+import os
+
+# File to store the tasks
+TASKS_FILE = "tasks.json"
+
+def load_tasks():
+    """Loads tasks from the JSON file."""
+    if os.path.exists(TASKS_FILE):
+        with open(TASKS_FILE, 'r') as file:
+            try:
+                return json.load(file)
+            except json.JSONDecodeError:
+                return []  # Handle empty or corrupt JSON
+    return []
+
+def save_tasks(tasks):
+    """Saves tasks to the JSON file."""
+    with open(TASKS_FILE, 'w') as file:
+        json.dump(tasks, file, indent=4)
+
+def add_task(tasks, description):
+    """Adds a new task to the list."""
+    task = {"description": description, "status": "pending"}
+    tasks.append(task)
+    save_tasks(tasks)
+    print(f"✅ Task added: {description}")
+
+def view_tasks(tasks):
+    """Displays all tasks."""
+    if not tasks:
+        print("📭 No tasks in the list.")
+        return
+
+    print("\n📝 --- Your To-Do List ---")
+    for i, task in enumerate(tasks):
+        status = "✅" if task["status"] == "completed" else "⏳"
+        print(f"{i + 1}. [{status}] {task['description']}")
+    print(f"📌 Total Tasks: {len(tasks)}\n")
+
+def mark_task_complete(tasks, task_index):
+    """Marks a task as complete."""
+    if 0 <= task_index < len(tasks):
+        if tasks[task_index]["status"] == "completed":
+            print("⚠️ Task already marked as complete.")
+        else:
+            tasks[task_index]["status"] = "completed"
+            save_tasks(tasks)
+            print(f"🎉 Task completed: {tasks[task_index]['description']}")
+    else:
+        print("❌ Invalid task number.")
+
+def delete_task(tasks, task_index):
+    """Deletes a task from the list."""
+    if 0 <= task_index < len(tasks):
+        deleted_task = tasks.pop(task_index)
+        save_tasks(tasks)
+        print(f"🗑️ Task deleted: {deleted_task['description']}")
+    else:
+        print("❌ Invalid task number.")
+
+def main():
+    tasks = load_tasks()
+
+    while True:
+        print("\n==== 📋 To-Do List Menu ====")
+        print("1. ➕ Add Task")
+        print("2. 👀 View Tasks")
+        print("3. ✅ Mark Task as Complete")
+        print("4. 🗑️ Delete Task")
+        print("5. 🚪 Exit")
+
+        choice = input("Enter your choice (1–5): ")
+
+        if choice == '1':
+            description = input("Enter task description: ")
+            add_task(tasks, description)
+        elif choice == '2':
+            view_tasks(tasks)
+        elif choice == '3':
+            view_tasks(tasks)
+            try:
+                task_num = int(input("Enter task number to mark as complete: "))
+                mark_task_complete(tasks, task_num - 1)
+            except ValueError:
+                print("❌ Please enter a valid number.")
+        elif choice == '4':
+            view_tasks(tasks)
+            try:
+                task_num = int(input("Enter task number to delete: "))
+                delete_task(tasks, task_num - 1)
+            except ValueError:
+                print("❌ Please enter a valid number.")
+        elif choice == '5':
+            print("👋 Exiting the app. Stay productive!")
+            break
+        else:
+            print("❌ Invalid choice. Please select from 1 to 5.")
+
+if __name__ == "__main__":
+    main()
